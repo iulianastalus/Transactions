@@ -13,17 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3F60848A-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{731B8787-5054-4F50-AC83-0CB4F7E37642}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.API", "Transactions.API\Transactions.API.csproj", "{8AC8C22B-4294-4FF3-98A4-B5EDA06F7E01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.API", "Transactions.API\Transactions.API.csproj", "{8AC8C22B-4294-4FF3-98A4-B5EDA06F7E01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Application", "Transactions.Application\Transactions.Application.csproj", "{B9564F58-F9EF-4046-8B1B-7ACD7E4C68DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Application", "Transactions.Application\Transactions.Application.csproj", "{B9564F58-F9EF-4046-8B1B-7ACD7E4C68DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Domain", "Transactions.Domain\Transactions.Domain.csproj", "{A7872B4C-6A32-4346-A80C-E9DF88CCC91D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Domain", "Transactions.Domain\Transactions.Domain.csproj", "{A7872B4C-6A32-4346-A80C-E9DF88CCC91D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Infrastructure", "Transactions.Infrastructure\Transactions.Infrastructure.csproj", "{A076FA17-DC01-42B3-8131-74E566519C61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Infrastructure", "Transactions.Infrastructure\Transactions.Infrastructure.csproj", "{A076FA17-DC01-42B3-8131-74E566519C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Test", "Transactions.Test\Transactions.Test.csproj", "{BE4D7B2D-9B32-4C29-9935-40BB1CE10B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Test", "Transactions.Test\Transactions.Test.csproj", "{BE4D7B2D-9B32-4C29-9935-40BB1CE10B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transactions.Infrastructure.DI", "Transactions.Infrastructure.DI\Transactions.Infrastructure.DI.csproj", "{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transactions.Infrastructure.DI", "Transactions.Infrastructure.DI\Transactions.Infrastructure.DI.csproj", "{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{2B4118EA-9704-4C13-85F0-7DA4C9450285}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Transactions.WebApp", "Transactions.WebApp\Transactions.WebApp.esproj", "{3F5C9A91-3F57-4723-B0E4-8902013B222D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,12 @@ Global
 		{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +76,7 @@ Global
 		{A076FA17-DC01-42B3-8131-74E566519C61} = {0E5F33BE-1CFC-4971-9310-4DFC0D114084}
 		{BE4D7B2D-9B32-4C29-9935-40BB1CE10B3D} = {3F60848A-AA77-4A25-AEEC-6541B618F010}
 		{28AB8FDF-5A38-48FF-9225-4DE2D5573D2E} = {0E5F33BE-1CFC-4971-9310-4DFC0D114084}
+		{3F5C9A91-3F57-4723-B0E4-8902013B222D} = {2B4118EA-9704-4C13-85F0-7DA4C9450285}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9CB2D58-6348-4C53-A07A-8F429F134AAF}

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h1>Please Upload the file</h1>
+      <input type="file" class="form-control" id="customFile" (change)="checkFileFormat($event)" />
+      <label for="customFile" class="text-danger">{{errorMessage}}</label>
+    </div>
+  </div>
+</div>
+
