@@ -3,6 +3,7 @@ using MediatR;
 using Transactions.Application.Queries;
 using Transactions.Application.Commands;
 using Transactions.Application.Interfaces;
+using System.Collections.Generic;
 
 namespace Transactions.API.Controllers
 {
@@ -12,10 +13,12 @@ namespace Transactions.API.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ICSVService _csvService;
-        public TransactionsController(IMediator mediator,ICSVService csvService)
+        private readonly IXMLService _xmlService;
+        public TransactionsController(IMediator mediator,ICSVService csvService, IXMLService xmlService)
         {
             _mediator = mediator;
             _csvService = csvService;
+            _xmlService = xmlService;
         }
 
         [HttpGet]
@@ -31,7 +34,18 @@ namespace Transactions.API.Controllers
             if (Request.Form.Files.Any()) 
             {
                 var file = Request.Form.Files[0];
-                var transactions = _csvService.ReadCSV<List<AddTransactionCommand>>(file.OpenReadStream());
+                var transactions = new List<AddTransactionCommand>();
+                switch (Path.GetExtension(file.FileName))
+                {
+                    case "csv":
+                        transactions = _csvService.ReadCSVFile<AddTransactionCommand>(file.OpenReadStream()).ToList();
+                        break;
+                    case "xml":
+                        transactions = _xmlService.ReadXMLFile<AddTransactionCommand>(file.OpenReadStream()).ToList();
+                        break;
+                    default:
+                        throw new Exception();
+                }                
                 foreach (var transaction in transactions)                 
                     await _mediator.Send(transaction);
                 
