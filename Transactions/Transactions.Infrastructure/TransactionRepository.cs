@@ -1,17 +1,27 @@
-﻿using System.Transactions;
+﻿using Transactions.Domain;
 using Transactions.Application.Interfaces;
 
 namespace Transactions.Infrastructure;
 
 public class TransactionRepository : ITransactionRepository
 {
-    public Task<List<Transaction>> GetAllTransactions()
+    ITransactionsDbContext _context;
+    public TransactionRepository(ITransactionsDbContext context)
+    {
+        _context = context;
+    }
+    public async Task<List<Transaction>> GetAllTransactions()
     {
         throw new NotImplementedException();
     }
 
-    public Task<Transaction> SaveTransaction(Transaction transaction)
+    public async Task<Transaction> SaveTransaction(Transaction transaction)
     {
-        throw new NotImplementedException();
+       var transactionResponse = await _context.SaveChangesAsync();
+        
+       if (transactionResponse > 0)
+           return transaction;
+
+        return null;
     }
 }
