@@ -1,12 +1,12 @@
-﻿using Transactions.Domain.Enum;
+﻿using MediatR;
+using Transactions.Domain.Enum;
 
 namespace Transactions.Application.Queries;
 
-public class GetTransactionsQuery
+public class GetTransactionsQuery : IRequest<IEnumerable<GetTransactionsResponse>>
 {
-    public string TransactionId { get; set; }
-    public decimal Amount { get; set; }
-    public string CurrencyCode {  get; set; }
-    public DateTime TransactionDate { get; set; }
-    public TransactionStatus Status { get; set; }
+    public DateTime? StartDate { get; set; }
+    public DateTime? EndDate { get; set; }
+    public TransactionStatus? Status { get; set; }
+    public string Currency { get; set; }
 }

@@ -1,8 +1,9 @@
-﻿using Transactions.Domain;
+﻿using Transactions.Application.Queries;
+using Transactions.Domain;
 namespace Transactions.Application.Interfaces;
 
 public interface ITransactionRepository
 {
     Task<Transaction> SaveTransaction(Transaction transaction);
-    Task<List<Transaction>> GetAllTransactions();
+    Task<List<Transaction>> GetAllTransactions(GetTransactionsQuery query);
 }
