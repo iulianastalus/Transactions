@@ -7,8 +7,8 @@ namespace Transactions.Application.Commands;
 
 public class AddTransactionHandler : IRequestHandler<AddTransactionCommand, AddTransactionResponse>
 {
-    ITransactionRepository _transactionRepository;
-    IMapper _mapper;
+    private readonly ITransactionRepository _transactionRepository;
+    private readonly IMapper _mapper;
     public AddTransactionHandler(ITransactionRepository transactionRepository,IMapper mapper)
     {
         _transactionRepository = transactionRepository;

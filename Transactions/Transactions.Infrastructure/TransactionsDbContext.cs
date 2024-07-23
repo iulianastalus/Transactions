@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Transactions.Application.Interfaces;
 using Transactions.Domain;
+using Transactions.Infrastructure.Interfaces;
 
 namespace Transactions.Infrastructure;
 
