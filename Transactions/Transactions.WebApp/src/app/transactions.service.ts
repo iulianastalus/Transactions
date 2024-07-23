@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TransactionsService {
-  url = "http://trasactions.api";
+  url = "https://localhost:7037/api/Transactions/Upload";
   formData = new FormData();
   constructor(private http: HttpClient) {
 
