@@ -1,5 +1,7 @@
-﻿namespace Transactions.Application.Commands;
+﻿using FluentValidation;
 
-public class AddTransactionValidator
+namespace Transactions.Application.Commands;
+
+public class AddTransactionValidator :AbstractValidator<AddTransactionCommand>
 {
 }

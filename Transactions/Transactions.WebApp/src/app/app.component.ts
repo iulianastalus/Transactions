@@ -16,7 +16,7 @@ export class AppComponent {
     const file: File = target.files![0];
     if (file) {
       if (file.type != "text/csv" && file.type != "text/xml") {
-        this.errorMessage = "Invalid Format !"
+        this.errorMessage = "Unknown Format !"
       } else {
         this.transactionsService.uploadFile(file).subscribe()
       }
