@@ -10,7 +10,7 @@ public class AddTransactionValidator :AbstractValidator<AddTransactionCommand>
         { 
             pr.RuleFor(p => p.TransactionId).NotNull().NotEmpty();
             pr.RuleFor(p => p.Amount).NotNull().NotEmpty();
-            pr.RuleFor(p => p.TransactionDate).NotNull().NotEmpty();
+            pr.RuleFor(p => p.CurrencyCode).NotNull().NotEmpty();
             pr.RuleFor(p => p.Status).NotNull().NotEmpty();
             pr.RuleFor(p => p.TransactionDate).NotNull().NotEmpty();
         });

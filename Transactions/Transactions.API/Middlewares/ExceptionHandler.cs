@@ -22,8 +22,10 @@ public class ExceptionHandler : IMiddleware
         }
     }
 
-    private Task HandleExceptionAsync(HttpContext httpContext, Exception e)
+    private async Task HandleExceptionAsync(HttpContext httpContext, Exception e)
     {
-        throw new NotImplementedException();
+        httpContext.Response.StatusCode = 400;
+        httpContext.Response.ContentType = "application/json";
+        await httpContext.Response.WriteAsync(e.Message);
     }
 }
