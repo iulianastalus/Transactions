@@ -4,6 +4,7 @@ namespace Transactions.Application.Commands;
 
 public class AddTransactionResponse
 {
-    public string TransactionId { get; set; }
+    public int SavedTransactions { get; set; }
+    public string Message { get; set; }
     public ResponseStatus Status { get; set; }
 }

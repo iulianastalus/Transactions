@@ -2,28 +2,39 @@
 using MediatR;
 using Transactions.Domain;
 using Transactions.Application.Interfaces;
+using FluentValidation;
+using Transactions.Application.Helpers;
 
 namespace Transactions.Application.Commands;
 
-public class AddTransactionHandler : IRequestHandler<AddTransactionCommand, AddTransactionResponse>
+public class AddTransactionHandler(ITransactionRepository transactionRepository, IMapper mapper, IValidator<AddTransactionCommand> validator) : 
+    IRequestHandler<AddTransactionCommand, AddTransactionResponse>
 {
-    private readonly ITransactionRepository _transactionRepository;
-    private readonly IMapper _mapper;
-    public AddTransactionHandler(ITransactionRepository transactionRepository,IMapper mapper)
-    {
-        _transactionRepository = transactionRepository;
-        _mapper = mapper;
-    }
     public async Task<AddTransactionResponse> Handle(AddTransactionCommand request, CancellationToken cancellationToken)
     {
-        var transactionEntity = _mapper.Map<Transaction>(request);
+        var transactionEntities = new List<Transaction>();
 
-        var transactionResponse = await _transactionRepository.SaveTransaction(transactionEntity);
+        foreach (var transaction in request.Transactions) 
+        {
+            var transactionEntity = mapper.Map<Transaction>(transaction);
+            transactionEntities.Add(transactionEntity);
+        }
+
+        var transactioncounter = 0;
+
+        validator.ValidateAndThrow(request);
+
+        await transactionEntities.ForEachAsync(async tEntity =>
+        {
+            transactioncounter += await transactionRepository.SaveTransaction(tEntity);
+        });
+           
 
         return new AddTransactionResponse
         {
-            TransactionId = transactionResponse.TransactionIdentificator,
-            Status = transactionResponse !=null ? Enum.ResponseStatus.Success : Enum.ResponseStatus.Error,
+            SavedTransactions = transactioncounter,
+            Status = transactioncounter == transactionEntities.Count ? Enum.ResponseStatus.Success : Enum.ResponseStatus.Error,
+            Message = transactioncounter == transactionEntities.Count ? "Success!" : "Error"
         };
     }
 }

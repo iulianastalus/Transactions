@@ -26,6 +26,7 @@ namespace Transactions.API.DependencyInjection
             services.AddScoped<ICSVService, CSVService>();
             services.AddScoped<IXMLService, XMLService>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IFileHandlerService, FileHandlerService>();
             services.AddTransient<ExceptionHandler>();
         }
     }
