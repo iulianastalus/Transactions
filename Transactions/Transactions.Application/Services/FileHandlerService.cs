@@ -18,7 +18,7 @@ public class FileHandlerService(ICSVService csvService, IXMLService xmlService) 
                 transactions = xmlService.ReadXMLFile<TransactionModel>(fileStream).ToList();
                 break;
             default:
-                throw new Exception();                
+                throw new Exception();
         }
         return new AddTransactionCommand
         {

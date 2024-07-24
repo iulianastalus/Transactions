@@ -11,9 +11,16 @@ namespace Transactions.API.Controllers
     [ApiController]
     public class TransactionsController(IMediator mediator, IFileHandlerService fileHandleService) : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> GetAll(GetTransactionsQuery query)
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll(string currency,DateTime startDate, DateTime endDate, int? status)
         {
+            var query = new GetTransactionsQuery
+            {
+                Currency = currency,
+                StartDate = startDate,
+                EndDate = endDate,
+                Status  = (Domain.Enum.TransactionStatus?) status
+            };
             var result = await mediator.Send(query);
             return Ok(result);
         }

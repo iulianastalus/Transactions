@@ -3,6 +3,7 @@ using MediatR;
 using Transactions.Domain;
 using Transactions.Application.Interfaces;
 using FluentValidation;
+using Transactions.Application.Helpers;
 
 namespace Transactions.Application.Commands;
 
@@ -11,13 +12,23 @@ public class AddTransactionHandler(ITransactionRepository transactionRepository,
 {
     public async Task<AddTransactionResponse> Handle(AddTransactionCommand request, CancellationToken cancellationToken)
     {
-        var transactionEntities = mapper.Map<List<Transaction>>(request);
+        var transactionEntities = new List<Transaction>();
+
+        foreach (var transaction in request.Transactions) 
+        {
+            var transactionEntity = mapper.Map<Transaction>(transaction);
+            transactionEntities.Add(transactionEntity);
+        }
+
         var transactioncounter = 0;
 
         validator.ValidateAndThrow(request);
 
-        foreach (var transactionEntity in transactionEntities)
-            transactioncounter += await transactionRepository.SaveTransaction(transactionEntity);
+        await transactionEntities.ForEachAsync(async tEntity =>
+        {
+            transactioncounter += await transactionRepository.SaveTransaction(tEntity);
+        });
+           
 
         return new AddTransactionResponse
         {

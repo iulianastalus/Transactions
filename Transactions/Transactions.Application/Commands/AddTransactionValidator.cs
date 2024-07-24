@@ -8,7 +8,7 @@ public class AddTransactionValidator :AbstractValidator<AddTransactionCommand>
    {
         RuleForEach(pr => pr.Transactions).ChildRules(pr => 
         { 
-            pr.RuleFor(p => p.TransactionId).NotNull().NotEmpty();
+            pr.RuleFor(p => p.TransactionIdentificator).NotNull().NotEmpty();
             pr.RuleFor(p => p.Amount).NotNull().NotEmpty();
             pr.RuleFor(p => p.CurrencyCode).NotNull().NotEmpty();
             pr.RuleFor(p => p.Status).NotNull().NotEmpty();
