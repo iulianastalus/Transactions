@@ -1,0 +1,3 @@
+-In order to reate the database run Migration script from Infrastructure project
+-Run web app to upload file
+-Use postman / swagger to run the api Get transactions 
