@@ -29,13 +29,8 @@ public class TransactionRepository : ITransactionRepository
         return response;
     }
 
-    public async Task<Transaction> SaveTransaction(Transaction transaction)
+    public async Task<int> SaveTransaction(Transaction transaction)
     {
-       var transactionResponse = await _context.SaveChangesAsync();
-        
-       if (transactionResponse > 0)
-           return transaction;
-
-        return null;
+        return await _context.SaveChangesAsync();      
     }
 }

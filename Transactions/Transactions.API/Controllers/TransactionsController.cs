@@ -37,10 +37,10 @@ namespace Transactions.API.Controllers
                 var transactions = new List<AddTransactionCommand>();
                 switch (Path.GetExtension(file.FileName))
                 {
-                    case "csv":
+                    case ".csv":
                         transactions = _csvService.ReadCSVFile<AddTransactionCommand>(file.OpenReadStream()).ToList();
                         break;
-                    case "xml":
+                    case ".xml":
                         transactions = _xmlService.ReadXMLFile<AddTransactionCommand>(file.OpenReadStream()).ToList();
                         break;
                     default:

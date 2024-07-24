@@ -6,10 +6,13 @@ public class AddTransactionValidator :AbstractValidator<AddTransactionCommand>
 {
    public AddTransactionValidator()
    {
-        RuleFor(pr => pr.TransactionId).NotNull().NotEmpty();
-        RuleFor(pr => pr.TransactionDate).NotNull().NotEmpty();
-        RuleFor(pr => pr.Amount).NotNull().NotEmpty();
-        RuleFor(pr => pr.CurrencyCode).NotNull().NotEmpty();
-        RuleFor(pr => pr.Status).NotNull().NotEmpty();
+        RuleForEach(pr => pr.Transactions).ChildRules(pr => 
+        { 
+            pr.RuleFor(p => p.TransactionId).NotNull().NotEmpty();
+            pr.RuleFor(p => p.Amount).NotNull().NotEmpty();
+            pr.RuleFor(p => p.TransactionDate).NotNull().NotEmpty();
+            pr.RuleFor(p => p.Status).NotNull().NotEmpty();
+            pr.RuleFor(p => p.TransactionDate).NotNull().NotEmpty();
+        });
     }
 }

@@ -2,28 +2,28 @@
 using MediatR;
 using Transactions.Domain;
 using Transactions.Application.Interfaces;
+using FluentValidation;
 
 namespace Transactions.Application.Commands;
 
-public class AddTransactionHandler : IRequestHandler<AddTransactionCommand, AddTransactionResponse>
+public class AddTransactionHandler(ITransactionRepository transactionRepository, IMapper mapper, IValidator<AddTransactionCommand> validator) : 
+    IRequestHandler<AddTransactionCommand, AddTransactionResponse>
 {
-    private readonly ITransactionRepository _transactionRepository;
-    private readonly IMapper _mapper;
-    public AddTransactionHandler(ITransactionRepository transactionRepository,IMapper mapper)
-    {
-        _transactionRepository = transactionRepository;
-        _mapper = mapper;
-    }
     public async Task<AddTransactionResponse> Handle(AddTransactionCommand request, CancellationToken cancellationToken)
     {
-        var transactionEntity = _mapper.Map<Transaction>(request);
+        var transactionEntities = mapper.Map<List<Transaction>>(request);
+        var transactioncounter = 0;
 
-        var transactionResponse = await _transactionRepository.SaveTransaction(transactionEntity);
+        validator.ValidateAndThrow(request);
+
+        foreach (var transactionEntity in transactionEntities)
+            transactioncounter += await transactionRepository.SaveTransaction(transactionEntity);
 
         return new AddTransactionResponse
         {
-            TransactionId = transactionResponse.TransactionIdentificator,
-            Status = transactionResponse !=null ? Enum.ResponseStatus.Success : Enum.ResponseStatus.Error,
+            SavedTransactions = transactioncounter,
+            Status = transactioncounter == transactionEntities.Count ? Enum.ResponseStatus.Success : Enum.ResponseStatus.Error,
+            Message = transactioncounter == transactionEntities.Count ? "Success!" : "Error"
         };
     }
 }
