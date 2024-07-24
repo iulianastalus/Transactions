@@ -1,6 +1,6 @@
 ﻿namespace Transactions.Application.Models;
 
-public class TransactionCommandModel
+public class TransactionModel
 {
     public string TransactionId { get; set; }
     public decimal Amount { get; set; }

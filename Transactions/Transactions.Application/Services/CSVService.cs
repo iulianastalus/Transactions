@@ -13,7 +13,7 @@ public class CSVService : ICSVService
         var conf = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             Delimiter = ",",
-            HasHeaderRecord = true,
+            HasHeaderRecord = false,
             TrimOptions = TrimOptions.Trim,
             MissingFieldFound = null
         };
